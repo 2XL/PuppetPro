@@ -1,0 +1,12 @@
+[submodule "puppet/modules/python"]
+	path = puppet/modules/python
+	url = https://github.com/stankevich/puppet-python.git
+[submodule "puppet/modules/APT"]
+	path = puppet/modules/APT
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "puppet/modules/vcsrepo"]
+	path = puppet/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git

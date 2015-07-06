@@ -2,9 +2,9 @@
 
 domain   = 'example.com'
 box = 'jessie64'
-nodes = [
-    { :hostname => 'slave41', :ip => '192.168.0.41', :box => box },
- #    { :hostname => 'slave42', :ip => '192.168.0.42', :box => box },
+nodes = [{ :hostname => 'default', :ip => '192.168.0.40', :box => box },
+     { :hostname => 'slave41', :ip => '192.168.0.41', :box => box },
+ #   { :hostname => 'slave42', :ip => '192.168.0.42', :box => box },
  #   { :hostname => 'slave43', :ip => '192.168.0.43', :box => 'precise32' },
  #   { :hostname => 'slave44', :ip => '192.168.0.44', :box => 'precise32' },
  #   { :hostname => 'slave45', :ip => '192.168.0.45', :box => 'precise32' },
@@ -33,6 +33,14 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.provision :shell do |shell|
+    shell.inline = "mkdir -p /etc/puppet/modules
+      puppet module install puppetlabs/nodejs;
+      puppet module install puppetlabs/apache;
+      puppet module install puppetlabs/vcsrepo"
+  end
+
+
   config.vm.provision :puppet do |puppet|
     puppet.options = "--verbose --debug"
     puppet.manifests_path = "puppet/manifests"
@@ -40,7 +48,7 @@ Vagrant.configure("2") do |config|
     puppet.module_path = "puppet/modules"
   end
 
-  config.vm.provision "shell", path: "puppet/scripts/bootstrap.sh"
+  config.vm.provision "shell", path: "puppet/scripts/bootstrap"
 
 
 
